@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="vue_det">
+	<h1>site:{{site}}</h1>
+	<h1>url:{{url}}</h1>
+	<!--<h1>{{details()}}</h1>-->
+    <h1>alexa:{{alexa}}</h1>
+</div>
+<script type="text/javascript">
+	// var vm=new Vue({//vue使用
+	// 	el:"#vue_det",//指定id为vue_det的元素
+	// 	data:{
+	// 		site:'this is site ',
+	// 		url:'http://localhost',
+	// 		alexa:'10000'
+	// 	},
+	// 	methods:{
+	// 		details:function(){
+	// 			return this.site+"ok?";//用函数返回数据
+	// 		}
+	// 	}
+	// })
+
+
+    var data={site:'this is the site ',url:'http://localhost',alexa:8888}
+    var vm=new Vue({
+        el:'#vue_det',
+        data:data
+    })
+    document.write(vm.site === data.site);//true,引用相同的对象
+    document.write("</br>");
+    //data和vm互相影响
+    vm.site='this is the new site ';
+    document.write(data.site+"</br>");//vm修改影响到原始数据data
+    data.alexa=12345;
+    document.write(vm.alexa+"</br>");//data修改影响到vm。
+
+    document.write(vm.$data ===data);//true,$符号属性特指vue属性
+    document.write("</br>");
+    document.write(vm.$el === document.getElementById('vue_det'));//true
+
+</script>
+</body>
+</html>
